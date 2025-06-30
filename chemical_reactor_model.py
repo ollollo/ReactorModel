@@ -396,7 +396,7 @@ def main():
     
     # Параметры оптимизации
     st.sidebar.subheader("Оптимизация")
-    lambda_reg = st.sidebar.slider("Регуляризация λ", 1e-10, 1e-2, 1e-6, format="%.2e")
+    lambda_reg = st.sidebar.slider("Регуляризация λ", 1e-10, 1e-2,step=1e-2, format="%.2e")
     
     st.sidebar.subheader("Целевые концентрации")
     target_input = st.sidebar.text_area(
@@ -421,7 +421,7 @@ def main():
     # Параметры PFR модели
     st.sidebar.subheader("Кинетическая модель")
     temperature = st.sidebar.slider("Температура, K", 450.0, 700.0, 573.15, 1.0)
-    o2_ratio = st.sidebar.slider("Соотношение O₂:C₃H₆", 0.5, 5.0, 2.24, 0.1)
+    o2_ratio = st.sidebar.slider("Соотношение O₂:C₃H₆", 0.5, 10.0, 2.24, 0.1)
     residence_time = st.sidebar.slider("Время пребывания, с", 0.1, 10.0, 3.0, 0.1)
     
     # Основное содержимое
@@ -507,10 +507,10 @@ def main():
         with col1:
             st.subheader("Параметры расчета")
             T_min = st.number_input("Мин. температура, K", 450.0, 600.0, 500.0)
-            T_max = st.number_input("Макс. температура, K", 600.0, 700.0, 650.0)
+            T_max = st.number_input("Макс. температура, K", 600.0, 1000.0, 650.0)
             ratio_min = st.number_input("Мин. соотношение O₂:C₃H₆", 0.5, 2.0, 1.0)
-            ratio_max = st.number_input("Макс. соотношение O₂:C₃H₆", 2.0, 5.0, 4.0)
-            n_points = st.slider("Количество точек", 10, 30, 15)
+            ratio_max = st.number_input("Макс. соотношение O₂:C₃H₆", 2.0, 10.0, 4.0)
+            n_points = st.slider("Количество точек", 10, 100, 15)
         
         with col2:
             if st.button("Создать 3D поверхность", type="primary"):
